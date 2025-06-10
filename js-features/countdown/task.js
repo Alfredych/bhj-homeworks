@@ -1,9 +1,9 @@
-let timer = parseInt(document.getElementById("timer").textContent);
-
-function timerCounter(timer, delay) {
+function timerCounter(startTime, delay) {
+  const elementTimer = document.getElementById("timer");
+  let timer = parseInt(startTime);
   const timerId = setInterval(() => {
     timer--;
-    document.getElementById("timer").textContent = timer;
+    elementTimer.textContent = timer;
 
     if(timer === 0) {
       alert("Вы победили в конкурсе");
@@ -12,4 +12,5 @@ function timerCounter(timer, delay) {
   }, delay);  
 }
 
-const timerId = timerCounter(timer, 1000);
+const startTime = document.getElementById("timer").textContent;
+timerCounter(startTime, 1000);
