@@ -15,22 +15,21 @@ for (let hole of holes) {
       countLost.textContent = counterLost;
     }
     
-    if (counterLost === 5) {
-      alert('Вы проиграли');
-      GameOver();
+    if (counterLost === 5) { 
+      GameOver('Вы проиграли');
     }
 
     if (counterDead === 10) {
-      alert('Вы победили!');
-      GameOver();
+      GameOver('Вы победили!');
     }
 
   });
 }
 
-  function GameOver() {
-  counterDead = 0;
-  counterLost = 0;
-  countDead.textContent = '0';
-  countLost.textContent = '0';
+  function GameOver(message) {
+    alert(message);
+    counterDead = 0;
+    counterLost = 0;
+    countDead.textContent = '0';
+    countLost.textContent = '0';
   }
