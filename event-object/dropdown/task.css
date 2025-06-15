@@ -46,6 +46,10 @@
   background-color: #fff;
 }
 
+.dropdown__link:hover {
+  background-color: #dbdbdb;
+}
+
 .dropdown__list_active {
   display: block;
 }
