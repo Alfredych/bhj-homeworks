@@ -44,3 +44,24 @@ document.addEventListener('DOMContentLoaded', function() {
   const rotators = document.querySelectorAll('.rotator');
   rotators.forEach(startRotator);
 });
+
+// Решение эксперта
+/* В задаче с ротаторами рекламы вместо того, чтобы каждый раз запускать и останавливать интервал, можно использовать setTimeout и вызывать его рекурсивно.
+Цвет и скорость можно получать напрямую из элементов. Зачем их дополнительно записывать в константы?
+Задачку можно порефакторить следующим образом:
+
+const rotatorCase = Array.from(document.querySelectorAll('.rotator__case'));
+let delay = 1000;
+let count = 0;
+
+function changeRotatorCase() {
+	rotatorCase.forEach((element) => element.classList.remove('rotator__case_active'));
+	rotatorCase[count].classList.add('rotator__case_active');
+	count = rotatorCase[count].nextElementSibling ? count + 1 : 0;
+	delay = rotatorCase[count].getAttribute('data-speed');
+	let color = rotatorCase[count].getAttribute('data-color');
+	rotatorCase[count].setAttribute('style', `color: ${color}`);
+	setTimeout(changeRotatorCase, delay);
+}
+
+setTimeout(changeRotatorCase, delay); */
