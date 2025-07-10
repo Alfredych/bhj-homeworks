@@ -42,21 +42,12 @@ document.addEventListener('DOMContentLoaded', function() {
       countElement.textContent = currentCount + quantity;
     } else {
       // Если товара еще нет в корзине
-      const productElement = document.createElement('div');
-      productElement.className = 'cart__product';
-      productElement.dataset.id = productId;
-      
-      const imageElement = document.createElement('img');
-      imageElement.className = 'cart__product-image';
-      imageElement.src = productImage;
-      
-      const countElement = document.createElement('div');
-      countElement.className = 'cart__product-count';
-      countElement.textContent = quantity;
-      
-      productElement.appendChild(imageElement);
-      productElement.appendChild(countElement);
-      cartProducts.appendChild(productElement);
+      cartProducts.insertAdjacentHTML('afterbegin', `
+        <div class="cart__product" data-id="${productId}">
+          <img class="cart__product-image" src="${productImage}"></img>
+          <div class="cart__product-count">${quantity}</div>
+        </div>
+      `);
     }
   }
 });

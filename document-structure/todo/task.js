@@ -9,30 +9,26 @@ document.addEventListener('DOMContentLoaded', function() {
   });
   
   function addTask() {
-    const taskText = taskInput.value;
+    const taskTitle = taskInput.value.trim();
     
-    if (taskText) {
-      const task = document.createElement('div');
-      task.className = 'task';
+    if (taskTitle) {
       
-      const taskTitle = document.createElement('div');
-      taskTitle.className = 'task__title';
-      taskTitle.textContent = taskText;
+      tasksList.insertAdjacentHTML('afterbegin', `
+        <div class="task">
+          <div class="task__title">
+            ${taskTitle}
+          </div>
+          <a href="#" class="task__remove">&times;</a>
+        </div>
+      `);
       
-      const removeTask = document.createElement('a');
-      removeTask.className = 'task__remove';
-      removeTask.href = '#';
-      removeTask.innerHTML = '&times;';
+      const task = tasksList.querySelector('.task:first-child');
+      const taskRemove = task.querySelector('.task__remove');
       
-      removeTask.addEventListener('click', function(e) {
+      taskRemove.addEventListener('click', function(e) {
         e.preventDefault();
         task.remove();
       });
-      
-      task.appendChild(taskTitle);
-      task.appendChild(removeTask);
-      
-      tasksList.appendChild(task);
       
       taskInput.value = '';
     }
